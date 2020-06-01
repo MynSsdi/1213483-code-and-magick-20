@@ -38,16 +38,16 @@ var renderElements = function(ctx, players, times, maxTime) {
     ctx.fillStyle = "#000";
     ctx.fillText(players[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - GAP);
   }
+
+  ctx.font = 'PT Mono 16px';
+  ctx.fillText('Ура вы победили!', CLOUD_X + COLUMN_GAP, CLOUD_Y + TEXT_HEIGHT);
+  ctx.fillText('Список результатов:', CLOUD_X + COLUMN_GAP, CLOUD_Y + 2 * TEXT_HEIGHT);
 }
 
 
 window.renderStatistics = function(ctx, players, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-
-  ctx.font = 'PT Mono 16px';
-  ctx.fillText('Ура вы победили!', CLOUD_X + COLUMN_GAP, CLOUD_Y + TEXT_HEIGHT);
-  ctx.fillText('Список результатов:', CLOUD_X + COLUMN_GAP, CLOUD_Y + 2 * TEXT_HEIGHT);
 
   var maxTime = getMaxElement(times);
   renderElements (ctx, players, times, maxTime);
