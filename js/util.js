@@ -11,6 +11,14 @@
   var MIN_NAME_LENGTH = 2;
   var MAX_NAME_LENGTH = 25;
 
+  var userDialog = document.querySelector('.setup');
+  var openUserDialog = document.querySelector('.setup-open');
+  var iconUserDialog = openUserDialog.querySelector('.setup-open-icon');
+  var closeUserDialog = document.querySelector('.setup-close');
+  var setupWizardForm = document.querySelector('.setup-wizard-form');
+  var setupSubmitForm = setupWizardForm.querySelector('.setup-submit');
+  var setupUserName = setupWizardForm.querySelector('.setup-user-name');
+
   var isIconUserInFocus = function () {
     return iconUserDialog === document.activeElement;
   };
@@ -31,6 +39,35 @@
     return setupSubmitForm === document.activeElement;
   };
 
+  var isEscEvent = function (evt, action) {
+    if (evt.key === 'Escape' && !isInputNameInFocus() && isSetupOpened()) {
+      action();
+    }
+  };
+
+  var isEnterEvent = function (evt, action) {
+    if (evt.key === 'Enter' && isIconUserInFocus()) {
+      action();
+    } else if (evt.key === 'Enter' && isCloseInFocus()) {
+      action();
+    }
+  };
+
+  var isSaveButton = function (evt) {
+    if (evt.key === 'Enter' && !isSaveButtonInFocus() && isSetupOpened()) {
+      evt.preventDefault();
+    }
+  };
+
+  var isClickColor = function (wizardObjectElement, wizardObjectInput, wizardObjectColor) {
+    if (wizardObjectElement.tagName !== 'DIV') {
+      wizardObjectElement.style.fill = wizardObjectColor;
+      wizardObjectInput.value = wizardObjectColor;
+    } else {
+      wizardObjectElement.style.backgroundColor = wizardObjectColor;
+    }
+  };
+
   window.util = {
     WIZARD_NAMES: WIZARD_NAMES,
     WIZARD_SURNAMES: WIZARD_SURNAMES,
@@ -42,31 +79,10 @@
     MIN_NAME_LENGTH: MIN_NAME_LENGTH,
     MAX_NAME_LENGTH: MAX_NAME_LENGTH,
 
-    isEscEvent: function (evt, action) {
-      if (evt.key === 'Escape' && !isInputNameInFocus() && isSetupOpened()) {
-        action();
-      }
-  },
-    isEnterEvent: function (evt, action) {
-      if (evt.key === 'Enter' && isIconUserInFocus()) {
-        action();
-      } else if (evt.key === 'Enter' && isCloseInFocus()) {
-        action();
-      }
-  },
-  isSaveButton: function (evt) {
-    if (evt.key === 'Enter' && !isSaveButtonInFocus() && isSetupOpened()) {
-      evt.preventDefault();
-    }
-  },
-  isClickColor: function (wizardObjectElement, wizardObjectInput, wizardObjectColor) {
-    if (wizardObjectElement.tagName !== 'DIV') {
-      wizardObjectElement.style.fill = wizardObjectColor;
-      wizardObjectInput.value = wizardObjectColor;
-    } else {
-      wizardObjectElement.style.backgroundColor = wizardObjectColor;
-    }
-  }
-};
+    isEscEvent: isEscEvent,
+    isEnterEvent: isEnterEvent,
+    isSaveButton: isSaveButton,
+    isClickColor: isClickColor
+  };
 
 })();

@@ -4,9 +4,7 @@
 
   var userDialog = document.querySelector('.setup');
   var setupWizardForm = document.querySelector('.setup-wizard-form');
-
   var openUserDialog = document.querySelector('.setup-open');
-  var iconUserDialog = openUserDialog.querySelector('.setup-open-icon');
   var closeUserDialog = document.querySelector('.setup-close');
 
   var onPopupEscPress = function (evt) {
@@ -17,9 +15,9 @@
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     setupWizardForm.addEventListener('keydown', function (evt) {
-    window.util.isSaveButton(evt);
+      window.util.isSaveButton(evt);
     });
-    window.colorsHandlers.setWizardColorsHandlers();
+    window.setup.setWizardColorsHandlers();
   };
 
   var closePopup = function () {
@@ -43,4 +41,4 @@
     window.util.isEnterEvent(evt, closePopup);
   });
 
-}) ();
+})();
