@@ -20,15 +20,15 @@
     setWizardColorsHandlers: function () {
       wizardObject.coat.addEventListener('click', function () {
         var coatColor = getRandomElement(window.util.WIZARD_COAT_COLORS);
-        window.util.isClickClor.wizardObject.isClickColor(wizardObject.coat, wizardObject.coatInput, coatColor);
+        window.util.isClickColor(wizardObject.coat, wizardObject.coatInput, coatColor);
       });
       wizardObject.eyes.addEventListener('click', function () {
         var eyesColor = getRandomElement(window.util.WIZARD_EYES_COLORS);
-        window.util.isClickClor.wizardObject.isClickColor(wizardObject.eyes, wizardObject.eyesInput, eyesColor);
+        window.util.isClickColor(wizardObject.eyes, wizardObject.eyesInput, eyesColor);
       });
       wizardObject.fireball.addEventListener('click', function () {
         var fireballColor = getRandomElement(window.util.WIZARD_FIREBALL_COLORS);
-        window.util.isClickClor.wizardObject.isClickColor(wizardObject.fireball, wizardObject.fireballInput, fireballColor);
+        window.util.isClickColor(wizardObject.fireball, wizardObject.fireballInput, fireballColor);
       });
     }
   };
