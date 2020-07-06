@@ -3,6 +3,7 @@
 (function () {
 
   var userDialog = document.querySelector('.setup');
+
   var setupWizardForm = document.querySelector('.setup-wizard-form');
   var setupUserName = setupWizardForm.querySelector('.setup-user-name');
   var setupPlayer = document.querySelector('.setup-player');
@@ -98,7 +99,6 @@
   }
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
-
   createDOMWizardsList(getWizards());
 
 })();

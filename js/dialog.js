@@ -1,13 +1,14 @@
 'use strict';
 
 (function () {
-
+  var startX;
+  var startY;
   var userDialog = document.querySelector('.setup');
   var setupWizardForm = document.querySelector('.setup-wizard-form');
   var openUserDialog = document.querySelector('.setup-open');
   var closeUserDialog = document.querySelector('.setup-close');
   var dialogHandle = document.querySelector('.upload');
-
+  var firstOpen = true;
   var onPopupEscPress = function (evt) {
     window.util.isEscEvent(evt, closePopup);
   };
@@ -19,6 +20,16 @@
       window.util.isSaveButton(evt);
     });
     window.setup.setWizardColorsHandlers();
+
+    if (firstOpen) {
+      var startCoordsPopup = userDialog.getBoundingClientRect();
+      startX = startCoordsPopup.left + startCoordsPopup.width / 2;
+      startY = startCoordsPopup.top;
+      firstOpen = false;
+    }
+
+    userDialog.style.left = startX + 'px';
+    userDialog.style.top = startY + 'px';
   };
 
   var closePopup = function () {
@@ -82,6 +93,7 @@
         };
         dialogHandle.addEventListener('click', onClickPreventDefault);
       }
+
     };
 
     document.addEventListener('mousemove', onMouseMove);
@@ -89,8 +101,8 @@
 
   });
 
-})();
+  document.removeEventListener('click', function (evt) {
+    evt.preventDefault();
+  });
 
-document.removeEventListener('click', function (evt) {
-  evt.preventDefault();
-});
+})();
