@@ -11,7 +11,7 @@
   var MIN_NAME_LENGTH = 2;
   var MAX_NAME_LENGTH = 25;
 
-  var DEBOUNCE_INTERVAL = 300;
+  var DEBOUNCE_INTERVAL = 500;
 
   var userDialog = document.querySelector('.setup');
   var openUserDialog = document.querySelector('.setup-open');
