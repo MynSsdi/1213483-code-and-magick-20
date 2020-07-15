@@ -11,6 +11,8 @@
   var MIN_NAME_LENGTH = 2;
   var MAX_NAME_LENGTH = 25;
 
+  var DEBOUNCE_INTERVAL = 300;
+
   var userDialog = document.querySelector('.setup');
   var openUserDialog = document.querySelector('.setup-open');
   var iconUserDialog = openUserDialog.querySelector('.setup-open-icon');
@@ -78,6 +80,7 @@
     POPULATION: POPULATION,
     MIN_NAME_LENGTH: MIN_NAME_LENGTH,
     MAX_NAME_LENGTH: MAX_NAME_LENGTH,
+    DEBOUNCE_INTERVAL: DEBOUNCE_INTERVAL,
 
     isEscEvent: isEscEvent,
     isEnterEvent: isEnterEvent,

@@ -19,7 +19,7 @@
     setupWizardForm.addEventListener('keydown', function (evt) {
       window.util.isSaveButton(evt);
     });
-    window.setup.setWizardColorsHandlers();
+    window.wizard.setWizardColorsHandlers();
 
     if (firstOpen) {
       var startCoordsPopup = userDialog.getBoundingClientRect();
@@ -103,6 +103,26 @@
 
   document.removeEventListener('click', function (evt) {
     evt.preventDefault();
+  });
+
+  var setupUserName = setupWizardForm.querySelector('.setup-user-name');
+
+  setupUserName.addEventListener('invalid', function () {
+    setupUserName.setCustomValidity('');
+    if (setupUserName.value.length === 0) {
+      setupUserName.setCustomValidity('Обязательное поле');
+    }
+  });
+
+  setupUserName.addEventListener('input', function () {
+    var valueLength = setupUserName.value.length;
+    if (valueLength < window.util.MIN_NAME_LENGTH) {
+      setupUserName.setCustomValidity('Ещё ' + (window.util.MIN_NAME_LENGTH - valueLength) + ' симв.');
+    } else if (valueLength > window.util.MAX_NAME_LENGTH) {
+      setupUserName.setCustomValidity('Удалите лишние ' + (valueLength - window.util.MAX_NAME_LENGTH) + ' симв.');
+    } else {
+      setupUserName.setCustomValidity('');
+    }
   });
 
 })();
